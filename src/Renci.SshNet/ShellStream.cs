@@ -784,6 +784,7 @@ namespace Renci.SshNet
 
         private void Session_Disconnected(object sender, EventArgs e)
         {
+            OnRaiseError(new ExceptionEventArgs(new Exception("Session Disconnected")));
             if (_channel != null)
                 _channel.Dispose();
         }
@@ -791,6 +792,7 @@ namespace Renci.SshNet
         private void Channel_Closed(object sender, ChannelEventArgs e)
         {
             //  TODO:   Do we need to call dispose here ??
+            OnRaiseError(new ExceptionEventArgs(new Exception("Channel Closed")));
             Dispose();
         }
 
